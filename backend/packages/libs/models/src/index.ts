@@ -10,6 +10,8 @@
 // -----------------------------------------------------------------------------
 export * from './schemas';
 export * from './validators/request.validators';
+export * from './did';
+
 
 // 导出验证函数（用于向后兼容）
 export {

@@ -1,0 +1,14 @@
+{
+  "name": "@saito/tunnel",
+  "version": "0.0.1",
+  "dependencies": {
+    "@nestjs/common": "^10.2.10",
+    "@nestjs/websockets": "^11.0.12",
+    "@nestjs/platform-socket.io": "^11.0.12",
+    "socket.io": "^4.8.1",
+    "tslib": "^2.6.2"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts"
+}

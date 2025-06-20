@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "sight": "https://schemas.sight.ai/terms#",
+
+    "sight:seq": {
+      "@id": "sight:seq",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "sight:hash": {
+      "@id": "sight:hash",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "P2PMessageHandler": "sight:P2PMessageHandler",
+    "ModelManifestService": "sight:ModelManifestService",
+    "service": {
+      "@id": "https://www.w3.org/ns/did#service",
+      "@type": "@id",
+      "@container": "@set",
+      "@context": {
+        "id": "@id",
+        "type": "@type",
+        "serviceEndpoint": {
+          "@id": "https://www.w3.org/ns/did#serviceEndpoint",
+          "@context": {
+            "type": "@type",
+            "direction": {
+              "@id": "sight:direction",
+              "@type": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "schema": {
+              "@id": "sight:schema",
+              "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+            },
+            "task_type": {
+              "@id": "sight:task_type",
+              "@type": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "description": {
+              "@id": "sight:description",
+              "@type": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

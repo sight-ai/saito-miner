@@ -65,6 +65,11 @@ export class MessageHandlerRegistry implements OnModuleInit {
     return this.outcomeHandlers.get(type);
   }
 
+  // add income handler keys getter
+  getAllIncomeHandlers(): string[] {
+    return Array.from(this.incomeHandlers.keys());
+  }
+
   /**
    * 处理入站消息
    */

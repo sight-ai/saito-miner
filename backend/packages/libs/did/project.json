@@ -1,0 +1,36 @@
+{
+  "name": "lib-did",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/libs/did/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/libs/did",
+        "main": "packages/libs/did/src/index.ts",
+        "tsConfig": "packages/libs/did/tsconfig.lib.json",
+        "assets": ["packages/libs/did/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/libs/did/**/*.ts",
+          "packages/libs/did/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/libs/did/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

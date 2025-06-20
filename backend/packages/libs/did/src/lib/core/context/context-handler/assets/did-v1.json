@@ -1,0 +1,25 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "alsoKnownAs": { "@id": "https://www.w3.org/ns/activitystreams#alsoKnownAs", "@type": "@id" },
+    "assertionMethod": { "@id": "https://w3id.org/security#assertionMethod", "@type": "@id", "@container": "@set" },
+    "authentication": { "@id": "https://w3id.org/security#authenticationMethod", "@type": "@id", "@container": "@set" },
+    "controller": { "@id": "https://w3id.org/security#controller", "@type": "@id" },
+    "service": {
+      "@id": "https://www.w3.org/ns/did#service",
+      "@type": "@id",
+      "@context": {
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "serviceEndpoint": { "@id": "https://www.w3.org/ns/did#serviceEndpoint", "@type": "@id" }
+      }
+    },
+    "verificationMethod": {
+      "@id": "https://w3id.org/security#verificationMethod",
+      "@type": "@id"
+    }
+  }
+}
