@@ -2,7 +2,6 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { ModuleRef } from '@nestjs/core';
 import { DeviceStatusService } from "@saito/device-status";
-// 避免循环依赖，直接定义事件常量和类型
 const TUNNEL_EVENTS = {
   CHAT_INFERENCE_REQUEST: 'tunnel.chat.inference.request',
   COMPLETION_INFERENCE_REQUEST: 'tunnel.completion.inference.request'
@@ -54,7 +53,6 @@ export class TunnelInferenceEventListenerService {
     private readonly unifiedModelService: UnifiedModelService,
     @Inject(DeviceStatusService) private readonly deviceStatusService: DeviceStatusService,
   ) {
-    // 延迟获取 TunnelService 以避免循环依赖
     setTimeout(() => {
       try {
         this.tunnelService = this.moduleRef.get('TunnelService', { strict: false });

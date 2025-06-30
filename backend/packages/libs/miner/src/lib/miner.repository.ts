@@ -7,12 +7,6 @@ import {
   ModelOfMiner
 } from "@saito/models";
 
-// 临时类型定义，直到 models 包中添加这些类型
-type MinerUptime = any;
-type MinerEarningsHistory = any;
-type MinerDailyRequests = any;
-type MinerTaskActivity = any;
-
 /**
  * 安全地解析 JSON 字符串
  * @param jsonString 要解析的 JSON 字符串
@@ -272,7 +266,7 @@ export class MinerRepository {
 
       // 根据时间单位生成时间点
       for (let i = timeConfig.value - 1; i >= 0; i--) {
-        let date = new Date(now);
+        const date = new Date(now);
 
         if (timeConfig.format === 'hour') {
           date.setHours(date.getHours() - i);

@@ -11,7 +11,9 @@
         "outputPath": "dist/packages/libs/tunnel",
         "main": "packages/libs/tunnel/src/index.ts",
         "tsConfig": "packages/libs/tunnel/tsconfig.lib.json",
-        "assets": ["packages/libs/tunnel/*.md"]
+        "assets": [
+          "packages/libs/tunnel/*.md",
+          "packages/libs/tunnel/src/lib/libp2p/libp2p.bundle.js"]
       }
     },
     "lint": {

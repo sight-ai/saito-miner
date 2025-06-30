@@ -142,7 +142,7 @@ export class IncomeChatRequestStreamHandler extends IncomeBaseMessageHandler {
       payload: {
         taskId: payload.taskId,
         path: payload.path || '/openai/v1/chat/completions',
-        data: convertedData as any // 临时类型断言，解决兼容性问题
+        data: convertedData 
       }
     };
   }
@@ -390,7 +390,7 @@ export class IncomeChatRequestStreamHandler extends IncomeBaseMessageHandler {
         taskId,
         path: '', // 响应时path可以为空
         data: chunk // 同时保持 data 字段兼容性
-      } as any // 临时使用 any，因为类型定义需要更新
+      } 
     };
 
     // 使用 handleMessage 让系统自动判断发送目标

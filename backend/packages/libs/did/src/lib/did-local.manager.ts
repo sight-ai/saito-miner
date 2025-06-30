@@ -6,8 +6,7 @@ import {
   ParsedDidDocumentSchema,
   RawDidDocument,
 } from '@saito/models';
-// 移除对 MessageHandlerRegistry 的依赖以解决循环依赖
-// import { MessageHandlerRegistry } from '@saito/tunnel';
+import { MessageHandlerRegistry } from '@saito/tunnel';
 import { ContextHandlerRegistry } from './core/context/context-handler/context-handler.registry';
 import { DidLocalBuilder } from './did-local.builder';
 import { toKeyPair, toPeerId, toPublicKeyBase58, peerIdToPublicKey, sign, verifySignature } from './did.utils';
@@ -31,8 +30,7 @@ export class DidLocalManager {
     @Inject('KEY_PAIR') private readonly seed: Uint8Array,
     @Inject('AUTHENTICATION') private readonly authentication: string,
     private readonly contextRegistry: ContextHandlerRegistry,
-    // 移除对 MessageHandlerRegistry 的依赖以解决循环依赖
-    // private readonly messageHandlerRegistry: MessageHandlerRegistry,
+    private readonly messageHandlerRegistry: MessageHandlerRegistry,
     private readonly builder: DidLocalBuilder,
     private readonly storage: DidLocalStorage,
   ) {
@@ -53,9 +51,7 @@ export class DidLocalManager {
     const publicKey = toPublicKeyBase58(keyPair);
     const peerId = toPeerId(keyPair.publicKey);
     const did = `did:sight:hoster:${peerId}`;
-    // 暂时禁用服务列表构建以避免循环依赖
-    const serviceList: ServiceEntry[] = [];
-    // const serviceList = buildServiceList(this.messageHandlerRegistry, did);
+    const serviceList = buildServiceList(this.messageHandlerRegistry, did);
     const verificationMethod = [
       {
         id: this.authentication,
@@ -67,7 +63,10 @@ export class DidLocalManager {
     this.state = {
       contextList,
       serviceList,
-      keyPair,
+      keyPair: {
+        publicKey: new Uint8Array(keyPair.publicKey),
+        secretKey: new Uint8Array(keyPair.secretKey)
+      },
       publicKey,
       did,
       authentication: this.authentication,
@@ -220,7 +219,10 @@ export class DidLocalManager {
     ];
     this.state = {
       ...this.state,
-      keyPair,
+      keyPair: {
+        publicKey: new Uint8Array(keyPair.publicKey),
+        secretKey: new Uint8Array(keyPair.secretKey)
+      },
       publicKey,
       did,
       verificationMethod,
@@ -243,8 +245,6 @@ type ServiceEntry = {
   serviceEndpoint: string | Record<string, unknown>;
 };
 
-// 暂时注释掉以避免循环依赖
-/*
 function buildServiceList(
   messageHandlerRegistry: MessageHandlerRegistry,
   did: string
@@ -269,4 +269,3 @@ function buildServiceList(
 
   return [...p2pServices, manifestService];
 }
-*/

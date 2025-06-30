@@ -333,7 +333,6 @@ export class DeviceStatusManagerService {
     if (typeof systemInfo.memory === 'object' && systemInfo.memory.usage) {
       return systemInfo.memory.usage;
     }
-    // 临时实现
     return 50;
   }
 

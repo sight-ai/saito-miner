@@ -12,7 +12,6 @@ import {
   DEVICE_CONFIG_SERVICE,
   DEVICE_SYSTEM_SERVICE
 } from "../device-status.interface";
-// 定义本地接口，避免循环依赖
 interface ITunnelCommunicationService {
   sendHeartbeatReport(fromPeerId: string, toPeerId: string, heartbeatData: any): Promise<boolean>;
 }

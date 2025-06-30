@@ -9,7 +9,6 @@ import { TUNNEL_EVENTS, TunnelModelReportReceivedEvent } from '../../events';
  * 模型上报消息入站处理器
  *
  * 处理通过tunnel接收到的模型上报请求，记录日志并可以触发事件
- * 注意：为避免循环依赖，此处理器不直接调用ModelReportingService
  */
 @MessageHandler({ type: 'device_model_report', direction: 'income' })
 @Injectable()

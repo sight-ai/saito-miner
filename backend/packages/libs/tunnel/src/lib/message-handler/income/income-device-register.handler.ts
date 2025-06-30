@@ -7,7 +7,6 @@ import { MessageHandler } from '../message-handler.decorator';
  * 设备注册请求消息入站处理器
  *
  * 处理通过tunnel接收到的设备注册请求，记录日志并可以触发事件
- * 注意：为避免循环依赖，此处理器不直接调用DeviceStatusService
  */
 @MessageHandler({ type: 'device_register_response', direction: 'income' })
 @Injectable()

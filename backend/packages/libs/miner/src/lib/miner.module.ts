@@ -61,7 +61,7 @@ const defaultMinerConfig: MinerConfig = {
     },
     {
       provide: STATISTICS_ANALYZER,
-      useClass: EarningsManagerService // 临时使用，后续可以创建专门的统计分析器
+      useClass: EarningsManagerService
     },
     {
       provide: GATEWAY_CONNECTOR,

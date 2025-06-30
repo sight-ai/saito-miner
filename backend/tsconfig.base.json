@@ -32,8 +32,6 @@
       "@saito/model-inference-client": ["packages/libs/model-inference-client/src/index.ts"],
       "@saito/model-inference-framework-management": ["packages/libs/model-inference-framework-management/src/index.ts"],
       "@saito/earnings-tracking": ["packages/libs/earnings-tracking/src/index.ts"],
-      "@saito/ollama": ["packages/libs/ollama1/src/index.ts"],
-      "@saito/vllm": ["packages/libs/vllm1/src/index.ts"],
       "@saito/did": ["packages/libs/did/src/index.ts"]
     }
   },

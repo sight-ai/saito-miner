@@ -23,6 +23,7 @@ import { ModelReportingModule } from "@saito/model-reporting";
 import { ModelInferenceClientModule, TUNNEL_SERVICE_TOKEN } from "@saito/model-inference-client";
 import { ModelInferenceFrameworkManagementModule } from "@saito/model-inference-framework-management";
 import { EarningsTrackingModule } from '@saito/earnings-tracking';
+import { Libp2pController } from './controllers/tunnel-libp2p.controller';
 @Module({
   imports: [
     EventEmitterModule.forRoot(),
@@ -44,6 +45,7 @@ import { EarningsTrackingModule } from '@saito/earnings-tracking';
     OpenAIController,
     ModelsController,
     AppConfigController,
+    Libp2pController
   ],
   providers: [
     {

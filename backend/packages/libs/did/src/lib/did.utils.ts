@@ -41,7 +41,7 @@ export function peerIdToPublicKey(didOrPeerId: string): Uint8Array | null {
 
 export function sign(nonce: string | Uint8Array, secretKey: Uint8Array): string {
   const msg = typeof nonce === 'string' ? Buffer.from(nonce) : nonce;
-  const signature = nacl.sign.detached(msg, secretKey);
+  const signature = nacl.sign.detached(new Uint8Array(msg), secretKey);
   return bs58.encode(signature);
 }
 
@@ -53,7 +53,7 @@ export function verifySignature(
   const msg = typeof nonce === 'string' ? Buffer.from(nonce) : nonce;
   const sig = bs58.decode(signature);
   const pub = bs58.decode(publicKey);
-  return nacl.sign.detached.verify(msg, sig, pub);
+  return nacl.sign.detached.verify(new Uint8Array(msg), sig, pub);
 }
 
 function deepSortObject(obj: any): any {

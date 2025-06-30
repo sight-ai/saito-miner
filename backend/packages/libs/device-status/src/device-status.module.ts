@@ -5,13 +5,8 @@ import { PersistentModule } from '@saito/persistent';
 import { LocalConfigService } from '@saito/common';
 import { DeviceStatusRepository } from './device-status.repository';
 import DeviceStatusServiceProvider from './device-status.service';
-// 移除对 TunnelModule 的直接依赖以解决循环依赖
-// import { TunnelModule } from '@saito/tunnel';
-// import { DidModule } from '@saito/did';
 
 import { ScheduleModule } from '@nestjs/schedule';
-// 移除对 ModelInferenceClientModule 的依赖以解决循环依赖
-// import { ModelInferenceClientModule } from '@saito/model-inference-client';
 
 // 导入新的服务组件
 import DeviceRegistryServiceProvider from './services/device-registry.service';
@@ -36,7 +31,6 @@ import { DidIntegrationService } from './services/did-integration.service';
 import { DidModule } from '@saito/did';
 import { TunnelModule } from '@saito/tunnel';
   
-// 定义本地符号，避免循环依赖
 const TUNNEL_COMMUNICATION_SERVICE = Symbol('TUNNEL_COMMUNICATION_SERVICE');
 
 @Module({
@@ -45,9 +39,6 @@ const TUNNEL_COMMUNICATION_SERVICE = Symbol('TUNNEL_COMMUNICATION_SERVICE');
     PersistentModule,
     ScheduleModule.forRoot(),
     EventEmitterModule,
-    // 移除对 ModelInferenceClientModule 的依赖以解决循环依赖
-    // ModelInferenceClientModule,
-    // 移除对 TunnelModule 的直接依赖以解决循环依赖
     DidModule,
     TunnelModule
   ],

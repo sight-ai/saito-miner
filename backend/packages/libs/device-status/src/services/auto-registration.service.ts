@@ -12,8 +12,6 @@ import {
   DeviceConfig,
   RegistrationResult
 } from '../device-status.interface';
-// 移除对 UnifiedModelService 的直接依赖以解决循环依赖
-// import { UnifiedModelService } from '@saito/model-inference-client';
 
 /**
  * 自动注册服务
@@ -41,8 +39,6 @@ export class AutoRegistrationService implements OnModuleInit {
     @Inject(DEVICE_GATEWAY_SERVICE)
     private readonly gatewayService: TDeviceGateway
 
-    // 移除对 UnifiedModelService 的直接依赖
-    // private readonly unifiedModelService: UnifiedModelService
   ) {}
 
   /**
@@ -82,14 +78,11 @@ export class AutoRegistrationService implements OnModuleInit {
         this.logger.log('Found stored registration info, attempting to register with gateway...');
       }
 
-      // 获取本地模型信息
-      const localModels = await this.getLocalModels();
-
       // 获取系统信息
       const systemInfo = await this.getSystemInfo();
 
       // 尝试向网关注册
-      const result = await this.registerWithGateway(config, localModels, systemInfo);
+      const result = await this.registerWithGateway(config, [], systemInfo);
       if (result.success) {
         this.logger.log(`Auto registration successful: ${result.node_id || result.name}`);
         
@@ -127,25 +120,6 @@ export class AutoRegistrationService implements OnModuleInit {
       config.deviceName
     );
   }
-
-  /**
-   * 获取本地模型信息 - 使用模型框架服务获取统一格式
-   */
-  private async getLocalModels(): Promise<any[]> {
-    try {
-      this.logger.debug('Getting local models...');
-
-      // TODO: 使用事件或其他方式获取模型信息，避免直接依赖
-      // 暂时返回空数组，避免循环依赖
-      this.logger.warn('⚠️  模型信息获取功能暂时禁用以避免循环依赖');
-      return [];
-
-    } catch (error) {
-      this.logger.error('获取本地模型失败:', error);
-      return [];
-    }
-  }
-
 
   /**
    * 获取系统信息
